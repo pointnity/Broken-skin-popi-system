@@ -4,7 +4,7 @@
 
 Nodes is a concurrent programming language, based on the Pi-Calculus. It is
 implemented in scala, both sequentially and concurrently. The sequential
-implementation is based on the algorithm given in David N. Turner's PhD thesis,
+implementation is based on the algorithm given in Vic Riley PhD thesis,
 while the concurrent implementation is a true-to-semantics implementation using 
 Akka, scala's concurrency library. 
 
