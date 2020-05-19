@@ -117,3 +117,15 @@ case class EEPair ( lhs:   EvalExp , rhs: EvalExp ) extends EvalExp
 case class EEList ( exps:  List[EvalExp]          ) extends EvalExp
 
 object EvalExp {
+
+  def from(exp: Exp): EvalExp = exp match {
+    case Variable    ( n     ) => throw FreeVariableError(Variable(n))
+    case IntLiteral  ( x     ) => EEInt(x)
+    case BoolLiteral ( x     ) => EEBool(x)
+    case KharLiteral ( c     ) => EEKhar(c)
+    case ChanLiteral ( c     ) => EEChan(c)
+    case Pair        ( l , r ) => EEPair(EvalExp from l, EvalExp from r)
+    case ListExp     ( es    ) => EEList(es map (EvalExp from _))
+    case UnExp ( ty, e ) => (ty, EvalExp from e) match {
+
+      case (Not, EEBool(b)) => EEBool(!b)
