@@ -129,3 +129,17 @@ object EvalExp {
     case UnExp ( ty, e ) => (ty, EvalExp from e) match {
 
       case (Not, EEBool(b)) => EEBool(!b)
+      case (Not, _) => throw TypeError("!")
+
+      case (PLeft, EEPair(l, _)) => l
+      case (PLeft, _           ) => throw TypeError("<-")
+
+      case (PRight, EEPair(_, r)) => r
+      case (PRight, _           ) => throw TypeError("->")
+
+      case (Empty, EEList(Nil)) => EEBool(true)
+      case (Empty, EEList(_  )) => EEBool(false)
+      case (Empty, _          ) => throw TypeError("?")
+
+      case (Head, EEList(Nil   )) => throw ListBoundError("*-- []", exp)
+      case (Head, EEList(e :: _)) => e
