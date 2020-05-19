@@ -186,3 +186,14 @@ object EvalExp {
       case(GreaterEq, _, _) => throw TypeError(">=")
 
       // Bool -> Bool -> Bool
+      case(And, EEBool(l), EEBool(r)) => EEBool(l && r)
+      case(And, _, _) => throw TypeError(">")
+
+      case(Or, EEBool(l), EEBool(r)) => EEBool(l || r)
+      case(Or, _, _) => throw TypeError(">=")
+
+      case(Cons, e, EEList(es)) => EEList(e :: es)
+      case(Cons, _, _         ) => throw TypeError("::")
+    }
+  }
+}
