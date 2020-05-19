@@ -47,3 +47,8 @@ object substituteProc extends Function3[Proc, Name, EvalExp, Proc] {
 
       case New(name, ty, q) =>
         New(name, ty, if(name == from) q else subP(q))
+
+      case End => End
+    }
+  }
+}
