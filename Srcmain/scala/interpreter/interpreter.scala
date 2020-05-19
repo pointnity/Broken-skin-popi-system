@@ -63,3 +63,19 @@ object substituteProcFold extends Function2[Proc, List[(Name, EvalExp)], Proc] {
 }
 
 object substituteExp extends Function3[Exp, Name, EvalExp, Exp] {
+
+  def apply(exp: Exp, from: Name, to: EvalExp): Exp = {
+    val subE : Exp => Exp = e => substituteExp(e, from, to)
+    exp match {
+      case Variable    ( n ) if n == from => to.unEvalExp
+      case Variable    ( n ) if n != from => exp
+      case IntLiteral  ( x )              => exp
+      case BoolLiteral ( x )              => exp
+      case KharLiteral ( c )              => exp
+      case ChanLiteral ( c )              => exp
+      case Pair        ( l  , r         ) => Pair(subE(l), subE(r))
+      case UnExp       ( ty , e         ) => UnExp(ty, subE(e))
+      case BinExp      ( ty , lhs , rhs ) => BinExp(ty, subE(lhs), subE(rhs))
+      case ListExp     ( es             ) => ListExp(es map subE)
+    }
+  }
