@@ -79,3 +79,24 @@ object substituteExp extends Function3[Exp, Name, EvalExp, Exp] {
       case ListExp     ( es             ) => ListExp(es map subE)
     }
   }
+}
+
+sealed abstract class EvalExp {
+  def unEvalExp: Exp = this match {
+    case EEInt  ( value  ) => IntLiteral  ( value                     )
+    case EEBool ( value  ) => BoolLiteral ( value                     )
+    case EEKhar ( value  ) => KharLiteral ( value                     )
+    case EEChan ( name   ) => ChanLiteral ( name                      )
+    case EEPair ( l , r  ) => Pair        ( l.unEvalExp , r.unEvalExp )
+    case EEList ( es     ) => ListExp     ( es map ( _.unEvalExp )    )
+  }
+  def channelName: Name = this match {
+    case EEInt  ( _     ) => throw TypeError("integer")
+    case EEBool ( _     ) => throw TypeError("boolean")
+    case EEKhar ( _     ) => throw TypeError("character")
+    case EEChan (name   ) => name
+    case EEPair ( _ , _ ) => throw TypeError("pair")
+    case EEList ( _     ) => throw TypeError("list")
+  }
+  def channelNames: Set[Name] = this match {
+    case EEInt  ( _       ) => Set.empty
