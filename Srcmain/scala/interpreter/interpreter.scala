@@ -143,3 +143,19 @@ object EvalExp {
 
       case (Head, EEList(Nil   )) => throw ListBoundError("*-- []", exp)
       case (Head, EEList(e :: _)) => e
+      case (Head, _             ) => throw TypeError("*--")
+
+      case (Tail, EEList(Nil    )) => throw ListBoundError("-** []", exp)
+      case (Tail, EEList(_ :: es)) => EEList(es)
+      case (Tail, _              ) => throw TypeError("-**")
+    }
+    case BinExp ( ty , lhs , rhs ) =>
+        (ty, EvalExp from lhs, EvalExp from rhs) match {
+
+      // Int -> Int -> Int
+      case(Add, EEInt(l), EEInt(r)) => EEInt(l + r)
+      case(Add, _, _) => throw TypeError("+")
+
+      case(Sub, EEInt(l), EEInt(r)) => EEInt(l - r)
+      case(Sub, _, _) => throw TypeError("-")
+
