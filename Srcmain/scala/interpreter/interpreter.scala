@@ -159,3 +159,30 @@ object EvalExp {
       case(Sub, EEInt(l), EEInt(r)) => EEInt(l - r)
       case(Sub, _, _) => throw TypeError("-")
 
+      case(Mul, EEInt(l), EEInt(r)) => EEInt(l * r)
+      case(Mul, _, _) => throw TypeError("*")
+
+      case(Div, EEInt(l), EEInt(r)) => EEInt(l / r)
+      case(Div, _, _) => throw TypeError("/")
+
+      case(Mod, EEInt(l), EEInt(r)) => EEInt(l % r)
+      case(Mod, _, _) => throw TypeError("%")
+
+      // A -> A -> Bool
+      case(Equal   , l, r) => EEBool(l == r)
+      case(NotEqual, l, r) => EEBool(l != r)
+
+      // Int -> Int -> Bool
+      case(Less, EEInt(l), EEInt(r)) => EEBool(l < r)
+      case(Less, _, _) => throw TypeError("<")
+
+      case(LessEq, EEInt(l), EEInt(r)) => EEBool(l <= r)
+      case(LessEq, _, _) => throw TypeError("<=")
+
+      case(Greater, EEInt(l), EEInt(r)) => EEBool(l > r)
+      case(Greater, _, _) => throw TypeError(">")
+
+      case(GreaterEq, EEInt(l), EEInt(r)) => EEBool(l >= r)
+      case(GreaterEq, _, _) => throw TypeError(">=")
+
+      // Bool -> Bool -> Bool
