@@ -100,3 +100,12 @@ sealed abstract class EvalExp {
   }
   def channelNames: Set[Name] = this match {
     case EEInt  ( _       ) => Set.empty
+    case EEBool ( _       ) => Set.empty
+    case EEKhar ( _       ) => Set.empty
+    case EEChan ( name    ) => Set(name)
+    case EEPair ( l , r   ) => l.channelNames union r.channelNames
+    case EEList ( Nil     ) => Set.empty
+    case EEList ( e :: es ) => e.channelNames union EEList(es).channelNames
+  }
+  def isEEChan: Boolean = this match { case EEChan(_) => true; case _ => false }
+}
