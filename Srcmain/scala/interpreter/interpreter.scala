@@ -34,3 +34,16 @@ object substituteProc extends Function3[Proc, Name, EvalExp, Proc] {
         val newQ = if ((as map (_._1)) contains from) q else subP(q)
         Receive(r, subE(c), qs, as, newQ)
       }
+
+      case LetIn(name, ty, exp, q) => {
+        val newQ = if (name == from) q else subP(q)
+        LetIn(name, ty, subE(exp), newQ)
+      }
+
+      case IfThenElse(exp, tP, fP) =>
+        IfThenElse(subE(exp), subP(tP), subP(fP))
+
+      case Parallel(q, r) => Parallel(subP(q), subP(r))
+
+      case New(name, ty, q) =>
+        New(name, ty, if(name == from) q else subP(q))
