@@ -109,3 +109,11 @@ sealed abstract class EvalExp {
   }
   def isEEChan: Boolean = this match { case EEChan(_) => true; case _ => false }
 }
+case class EEInt  ( value: Int                    ) extends EvalExp
+case class EEBool ( value: Boolean                ) extends EvalExp
+case class EEKhar ( value: Char                   ) extends EvalExp
+case class EEChan ( name:  Name                   ) extends EvalExp
+case class EEPair ( lhs:   EvalExp , rhs: EvalExp ) extends EvalExp
+case class EEList ( exps:  List[EvalExp]          ) extends EvalExp
+
+object EvalExp {
