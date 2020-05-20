@@ -21,3 +21,4 @@ object Main extends App {
   val file: java.io.File = new java.io.File ( args ( 0 ) )
 
   if (!file.exists) {
+    println(s"File '${file.getAbsolutePath}' does not exist.")
