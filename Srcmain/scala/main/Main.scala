@@ -43,3 +43,7 @@ object Main extends App {
 
         val cp: Option [ ( Proc , Map [ Name, ClassInfo ] ) ] =
           contextualProc ( program )
+
+        val ( proc: Proc , tcInfo: Map [ Name, ClassInfo ] ) = cp.get
+
+        // Generate typing constraints
