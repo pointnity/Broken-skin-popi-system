@@ -23,3 +23,4 @@ object Main extends App {
   if (!file.exists) {
     println(s"File '${file.getAbsolutePath}' does not exist.")
     sys.exit(1)
+  }
