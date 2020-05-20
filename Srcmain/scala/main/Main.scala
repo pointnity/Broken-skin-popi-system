@@ -103,3 +103,4 @@ object Main extends App {
       sys.exit(1)
     }
   }
+}
