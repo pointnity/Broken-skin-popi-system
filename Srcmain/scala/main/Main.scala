@@ -84,3 +84,22 @@ object Main extends App {
       case Left ( LexerError  ( row , col , msg ) ) => {
         println("Lexical error (" + row + ", " + col + "): " + msg)
       }
+      case Left ( ParserError ( row , col , msg ) ) => {
+        println("Syntax error (" + row + ", " + col + "): " + msg)
+      }
+    }
+
+  } catch {
+
+    case ioe: IOException => {
+      println("IO error.")
+      ioe.printStackTrace
+      sys.exit(1)
+    }
+
+    case e: Exception => {
+      println(s"Unknown error: ${e.getClass.getName}")
+      e.printStackTrace
+      sys.exit(1)
+    }
+  }
