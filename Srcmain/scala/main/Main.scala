@@ -59,3 +59,4 @@ object Main extends App {
 
           case Left  ( cs ) => {
             println ( s"${cs.size} type errors found:" )
+            cs.foreach ( {
