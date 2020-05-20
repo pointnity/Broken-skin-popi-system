@@ -47,3 +47,4 @@ object Main extends App {
         val ( proc: Proc , tcInfo: Map [ Name, ClassInfo ] ) = cp.get
 
         // Generate typing constraints
+        val ( _ , constr: ConstraintSet ) =
