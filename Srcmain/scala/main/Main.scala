@@ -51,3 +51,7 @@ object Main extends App {
           checker.constraintsProc ( proc , Map.empty )
 
         // Try to solve constraints
+        checker.unify ( constr , ConstraintSet.empty , tcInfo ) match {
+
+          // If constraints are solved, run the program
+          case Right ( _  ) =>
