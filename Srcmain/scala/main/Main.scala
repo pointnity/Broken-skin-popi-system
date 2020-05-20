@@ -55,3 +55,4 @@ object Main extends App {
 
           // If constraints are solved, run the program
           case Right ( _  ) =>
+            runWithTurnerMachine(proc, namesF, nextName)
