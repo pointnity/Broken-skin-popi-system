@@ -12,3 +12,5 @@ import java.io.IOException
 import scala.io.Source
 
 object Main extends App {
+
+  if (args.length < 1) {
