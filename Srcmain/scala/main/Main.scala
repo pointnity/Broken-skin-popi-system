@@ -40,3 +40,6 @@ object Main extends App {
         val namesF: Map [ Name , String ] = names.map ( _.swap )
 
         val checker: Typecheck = new Typecheck ( nextName )
+
+        val cp: Option [ ( Proc , Map [ Name, ClassInfo ] ) ] =
+          contextualProc ( program )
