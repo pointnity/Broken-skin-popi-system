@@ -60,3 +60,4 @@ object Main extends App {
           case Left  ( cs ) => {
             println ( s"${cs.size} type errors found:" )
             cs.foreach ( {
+              case TypeConstraint ( t1 , t2 , orig ) => {
