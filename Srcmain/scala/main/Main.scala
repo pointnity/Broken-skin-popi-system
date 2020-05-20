@@ -62,3 +62,4 @@ object Main extends App {
             cs.foreach ( {
               case TypeConstraint ( t1 , t2 , orig ) => {
                 println (
+                  s"\n  Cannot unify ${t1 pstr namesF} " +
