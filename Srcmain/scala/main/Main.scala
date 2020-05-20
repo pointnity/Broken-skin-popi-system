@@ -14,3 +14,4 @@ import scala.io.Source
 object Main extends App {
 
   if (args.length < 1) {
+    println("Bad command, please supply a filename.")
