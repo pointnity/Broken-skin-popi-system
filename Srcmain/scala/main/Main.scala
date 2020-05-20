@@ -28,3 +28,6 @@ object Main extends App {
   if (file.isDirectory) {
     println(s"File '${file.getAbsolutePath}' is a directory.")
     sys.exit(1)
+  }
+
+  try {
