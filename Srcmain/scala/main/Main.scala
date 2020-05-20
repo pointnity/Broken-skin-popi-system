@@ -49,3 +49,5 @@ object Main extends App {
         // Generate typing constraints
         val ( _ , constr: ConstraintSet ) =
           checker.constraintsProc ( proc , Map.empty )
+
+        // Try to solve constraints
