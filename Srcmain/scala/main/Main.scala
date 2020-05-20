@@ -58,3 +58,4 @@ object Main extends App {
             runWithTurnerMachine(proc, namesF, nextName)
 
           case Left  ( cs ) => {
+            println ( s"${cs.size} type errors found:" )
