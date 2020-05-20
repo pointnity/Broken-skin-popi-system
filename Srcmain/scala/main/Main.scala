@@ -63,3 +63,4 @@ object Main extends App {
               case TypeConstraint ( t1 , t2 , orig ) => {
                 println (
                   s"\n  Cannot unify ${t1 pstr namesF} " +
+                  s"with ${t2 pstr namesF}." )
