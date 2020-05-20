@@ -31,3 +31,11 @@ object Main extends App {
   }
 
   try {
+
+    lexAndParse ( Parser.tcElem , Source fromFile args(0) ) match {
+      case Right ( ( names , nextName , program ) ) =>
+
+        // 'flip' the name map from the lexer such that we can easily use it to
+        // print terms.
+        val namesF: Map [ Name , String ] = names.map ( _.swap )
+
