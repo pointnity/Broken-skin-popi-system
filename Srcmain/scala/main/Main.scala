@@ -17,3 +17,7 @@ object Main extends App {
     println("Bad command, please supply a filename.")
     sys.exit(1)
   }
+
+  val file: java.io.File = new java.io.File ( args ( 0 ) )
+
+  if (!file.exists) {
