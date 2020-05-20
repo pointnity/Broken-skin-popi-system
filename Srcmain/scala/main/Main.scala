@@ -67,3 +67,20 @@ object Main extends App {
                 orig.foreach ( { o =>
                   println ( s"    At ${o.info}:" )
                   println ( s"    ${o pstr namesF}" )
+                } )
+              }
+              case ArityConstraint ( a1 , a2 , orig ) => {
+                println ( s"\n  Arity mismatch $a1 != $a2." )
+                orig.foreach ( { o =>
+                  println ( s"    At ${o.info}:" )
+                  println ( s"    ${o pstr namesF}" )
+                } )
+              }
+            } )
+          }
+
+        }
+
+      case Left ( LexerError  ( row , col , msg ) ) => {
+        println("Lexical error (" + row + ", " + col + "): " + msg)
+      }
