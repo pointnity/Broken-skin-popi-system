@@ -16,3 +16,4 @@ object Main extends App {
   if (args.length < 1) {
     println("Bad command, please supply a filename.")
     sys.exit(1)
+  }
