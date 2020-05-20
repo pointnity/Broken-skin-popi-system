@@ -66,3 +66,4 @@ object Main extends App {
                   s"with ${t2 pstr namesF}." )
                 orig.foreach ( { o =>
                   println ( s"    At ${o.info}:" )
+                  println ( s"    ${o pstr namesF}" )
