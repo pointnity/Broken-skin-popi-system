@@ -60,3 +60,4 @@ object Parser extends Parsers {
    */
   def putPos [ T <: SyntaxElement ] ( elem: T , l: PostToken ,
   r: PostToken ): T = {
+    elem.setInfo ( SrcPosInfo ( ( l.pos.line , l.pos.column ) ,
