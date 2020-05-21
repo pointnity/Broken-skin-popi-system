@@ -63,3 +63,4 @@ object Parser extends Parsers {
     elem.setInfo ( SrcPosInfo ( ( l.pos.line , l.pos.column ) ,
       ( r.pos.line, r.pos.column ) ) )
     elem
+  }
