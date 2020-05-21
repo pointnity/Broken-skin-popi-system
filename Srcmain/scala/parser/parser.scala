@@ -8,3 +8,4 @@ package parser
  *  - The postlexing step converts PreTokens into PostTokens, changing the
  *  representation of names from Strings to Integers, providing a map between
  *  string and integer names for printing purposes.
+ *  - Parsing converts a List [ PostToken ] into a syntax.Proc.
