@@ -74,3 +74,23 @@ object Parser extends Parsers {
       elem.setInfo ( SrcPosInfo ( ll , rr ) ) ; elem
     case _ => elem.setInfo ( NoInfo ) ; elem
   }
+
+  /** As above, where the first position is from a PostToken and the second from
+   *  a SyntaxElement.
+   */
+  def putPos [ T <: SyntaxElement ] ( elem: T , l: PostToken ,
+  r: SyntaxElement ): T = r.info match {
+    case SrcPosInfo ( rl , rr ) =>
+      elem.setInfo ( SrcPosInfo ( ( l.pos.line , l.pos.column ) , rr ) ) ; elem
+    case _ => elem.setInfo ( NoInfo ) ; elem
+  }
+
+  override type Elem = PostToken
+
+  def name: Parser [ Name ] = accept ( "POSTIDENT" , {
+    case p @ POSTIDENT ( n ) => putPos ( n , p , p )
+  } )
+
+  def tcElem: Parser [ TypeClassElement ] = tcProc | tcClass | tcInst
+
+  def tcClass: Parser [ TypeClassElement ] =
