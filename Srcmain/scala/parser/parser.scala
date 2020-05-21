@@ -17,3 +17,6 @@ import scala.io.Source
 import scala.util.parsing.input._
 import scala.util.parsing.combinator._
 import scala.collection.immutable.PagedSeq
+
+/** Responsible for converting a List [ PostToken ] into a syntax.Proc via the
+ *  ... method.
