@@ -48,3 +48,4 @@ object Parser extends Parsers {
   ): Either [ ParserError , T ] =
     production ( new TokenReader ( input ) ) match {
       case Success   ( prc , rest ) => Right ( prc                 )
+      case NoSuccess ( msg , rest ) =>
