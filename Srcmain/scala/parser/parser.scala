@@ -69,3 +69,4 @@ object Parser extends Parsers {
    *  PostTokens.
    */
   def putPos [ T <: SyntaxElement ] ( elem: T , l: SyntaxElement ,
+  r: SyntaxElement ): T = ( l.info , r.info ) match {
