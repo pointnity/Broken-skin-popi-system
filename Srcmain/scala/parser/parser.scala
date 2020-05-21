@@ -16,3 +16,4 @@ import typeclass.syntax._
 import scala.io.Source
 import scala.util.parsing.input._
 import scala.util.parsing.combinator._
+import scala.collection.immutable.PagedSeq
