@@ -6,3 +6,4 @@ package parser
  *  are tokens where identifiers, ints and such carry the text that was lexed
  *  to produce them.
  *  - The postlexing step converts PreTokens into PostTokens, changing the
+ *  representation of names from Strings to Integers, providing a map between
