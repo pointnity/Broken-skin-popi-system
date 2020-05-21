@@ -71,3 +71,4 @@ object Parser extends Parsers {
   def putPos [ T <: SyntaxElement ] ( elem: T , l: SyntaxElement ,
   r: SyntaxElement ): T = ( l.info , r.info ) match {
     case ( SrcPosInfo ( ll , lr ) , SrcPosInfo ( rl , rr ) ) =>
+      elem.setInfo ( SrcPosInfo ( ll , rr ) ) ; elem
