@@ -50,3 +50,4 @@ object Parser extends Parsers {
       case Success   ( prc , rest ) => Right ( prc                 )
       case NoSuccess ( msg , rest ) =>
         Left ( ParserError ( rest.pos.line , rest.pos.column , msg ) )
+    }
