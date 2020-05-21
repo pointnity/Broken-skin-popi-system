@@ -31,3 +31,4 @@ case class ParserError ( row: Int , col: Int , msg: String )
 object lexAndParse {
 
   def apply [ T ] (
+    production: Parser.Parser [ T ] ,
