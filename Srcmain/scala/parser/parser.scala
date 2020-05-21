@@ -68,3 +68,4 @@ object Parser extends Parsers {
   /** As above, but using positions taken from SyntaxElements as opposed to
    *  PostTokens.
    */
+  def putPos [ T <: SyntaxElement ] ( elem: T , l: SyntaxElement ,
