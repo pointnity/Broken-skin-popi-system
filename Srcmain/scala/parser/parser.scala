@@ -39,3 +39,7 @@ object lexAndParse {
       parsed <- Parser ( production , lexed._3       ).right
     } yield ( lexed._1 , lexed._2 , parsed )
 }
+
+object Parser extends Parsers {
+
+  def apply [ T ] (
