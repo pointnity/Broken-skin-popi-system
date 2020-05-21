@@ -29,3 +29,5 @@ case class ParserError ( row: Int , col: Int , msg: String )
   extends LexerParserError ( row , col , msg )
 
 object lexAndParse {
+
+  def apply [ T ] (
