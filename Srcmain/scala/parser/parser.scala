@@ -58,3 +58,4 @@ object Parser extends Parsers {
    *  source position of the SyntaxElement as the position of the second token.
    *  Return the SyntaxElement with reassigned positions.
    */
+  def putPos [ T <: SyntaxElement ] ( elem: T , l: PostToken ,
