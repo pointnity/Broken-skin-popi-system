@@ -12,3 +12,4 @@ package parser
  */
 
 import syntax._
+import typeclass.syntax._
