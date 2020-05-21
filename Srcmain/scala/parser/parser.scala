@@ -14,3 +14,4 @@ package parser
 import syntax._
 import typeclass.syntax._
 import scala.io.Source
+import scala.util.parsing.input._
