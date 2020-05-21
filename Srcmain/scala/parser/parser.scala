@@ -72,3 +72,4 @@ object Parser extends Parsers {
   r: SyntaxElement ): T = ( l.info , r.info ) match {
     case ( SrcPosInfo ( ll , lr ) , SrcPosInfo ( rl , rr ) ) =>
       elem.setInfo ( SrcPosInfo ( ll , rr ) ) ; elem
+    case _ => elem.setInfo ( NoInfo ) ; elem
