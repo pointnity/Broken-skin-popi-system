@@ -46,3 +46,4 @@ object Parser extends Parsers {
     production: Parser [ T ] ,
     input: List [ PostToken ]
   ): Either [ ParserError , T ] =
+    production ( new TokenReader ( input ) ) match {
