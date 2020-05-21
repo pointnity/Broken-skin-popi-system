@@ -5,3 +5,4 @@ package parser
  *  - Lexing converts a String of nodes code into a List [ PreToken ]. PreTokens
  *  are tokens where identifiers, ints and such carry the text that was lexed
  *  to produce them.
+ *  - The postlexing step converts PreTokens into PostTokens, changing the
