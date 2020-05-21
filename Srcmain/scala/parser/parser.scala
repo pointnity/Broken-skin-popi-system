@@ -51,3 +51,10 @@ object Parser extends Parsers {
       case NoSuccess ( msg , rest ) =>
         Left ( ParserError ( rest.pos.line , rest.pos.column , msg ) )
     }
+
+
+  /** Take a SyntaxElement and two PostTokens, assign the left source position
+   *  of the SyntaxElement as the position of the first token, and the right
+   *  source position of the SyntaxElement as the position of the second token.
+   *  Return the SyntaxElement with reassigned positions.
+   */
