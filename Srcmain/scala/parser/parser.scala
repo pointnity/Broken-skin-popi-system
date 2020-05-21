@@ -32,3 +32,4 @@ object lexAndParse {
 
   def apply [ T ] (
     production: Parser.Parser [ T ] ,
+    input: Source
