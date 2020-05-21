@@ -34,3 +34,4 @@ object lexAndParse {
     production: Parser.Parser [ T ] ,
     input: Source
   ): Either [ LexerParserError , ( Map [ String , Name ] , NumName , T ) ] =
+    for {
