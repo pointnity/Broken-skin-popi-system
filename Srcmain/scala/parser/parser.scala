@@ -64,3 +64,7 @@ object Parser extends Parsers {
       ( r.pos.line, r.pos.column ) ) )
     elem
   }
+
+  /** As above, but using positions taken from SyntaxElements as opposed to
+   *  PostTokens.
+   */
