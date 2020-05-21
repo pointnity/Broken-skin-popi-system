@@ -21,3 +21,10 @@ import scala.collection.immutable.PagedSeq
 /** Responsible for converting a List [ PostToken ] into a syntax.Proc via the
  *  ... method.
  */
+
+sealed abstract class LexerParserError ( row: Int , col: Int , msg: String )
+case class LexerError  ( row: Int , col: Int , msg: String )
+  extends LexerParserError ( row , col , msg )
+case class ParserError ( row: Int , col: Int , msg: String )
+  extends LexerParserError ( row , col , msg )
+
