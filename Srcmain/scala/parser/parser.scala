@@ -36,3 +36,4 @@ object lexAndParse {
   ): Either [ LexerParserError , ( Map [ String , Name ] , NumName , T ) ] =
     for {
       lexed  <- Lexer  ( input                       ).right
+      parsed <- Parser ( production , lexed._3       ).right
