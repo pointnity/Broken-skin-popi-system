@@ -73,3 +73,4 @@ object Parser extends Parsers {
     case ( SrcPosInfo ( ll , lr ) , SrcPosInfo ( rl , rr ) ) =>
       elem.setInfo ( SrcPosInfo ( ll , rr ) ) ; elem
     case _ => elem.setInfo ( NoInfo ) ; elem
+  }
