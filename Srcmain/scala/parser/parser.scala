@@ -35,3 +35,4 @@ object lexAndParse {
     input: Source
   ): Either [ LexerParserError , ( Map [ String , Name ] , NumName , T ) ] =
     for {
+      lexed  <- Lexer  ( input                       ).right
