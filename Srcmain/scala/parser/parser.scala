@@ -38,3 +38,4 @@ object lexAndParse {
       lexed  <- Lexer  ( input                       ).right
       parsed <- Parser ( production , lexed._3       ).right
     } yield ( lexed._1 , lexed._2 , parsed )
+}
