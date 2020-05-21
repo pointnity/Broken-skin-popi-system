@@ -94,3 +94,24 @@ object Parser extends Parsers {
   def tcElem: Parser [ TypeClassElement ] = tcProc | tcClass | tcInst
 
   def tcClass: Parser [ TypeClassElement ] =
+    CLASS() ~ name ~ SEMI() ~ name ~ COLON() ~ ty ~ DOT() ~ tcElem ^^ {
+      case _ ~ c ~ _ ~ b ~ _ ~ t ~ _ ~ e  => TypeClassDecl ( c , b , t , e )
+    }
+
+  def tcInst: Parser [ TypeClassElement ] =
+    INST() ~ name ~ SEMI() ~ ty ~ WHERE() ~ proc ~ IN() ~ tcElem ^^ {
+      case _ ~ n ~ _ ~ t ~ _ ~ w ~ _ ~ e =>
+        TypeClassInst ( n , t , w.asInstanceOf[Receive] , e )
+    }
+
+  def tcProc: Parser [ TypeClassElement ] =
+    proc ^^ { case p => TypeClassProc ( p ) }
+
+  def proc: Parser [ Proc ] = phrase ( seq )
+
+  def seq: Parser [ Proc ] = end | snd | rcv | srv | res | let | ite | par
+
+  def par: Parser [ Proc ] =
+    LSQUARE() ~ rep1sep ( seq , BAR() ) ~ RSQUARE() ^^ {
+      case l ~ p ~ r => putPos ( Proc fromList p , l , r )
+    }
