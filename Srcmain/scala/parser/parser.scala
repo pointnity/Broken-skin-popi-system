@@ -443,3 +443,25 @@ case class PREIDENT ( text: String ) extends PreInfoToken ( text ) {
     nextName: NumName
   ): ( Map [ String , Name ] , NumName , PostToken ) =
     nameMap get this.text match {
+      case Some ( name ) => ( nameMap ,
+        nextName      , POSTIDENT ( name     ).setPos ( this.pos ) )
+      case None          => ( nameMap + ( ( this.text , nextName ) ) ,
+        nextName.next , POSTIDENT ( nextName ).setPos ( this.pos ) )
+    }
+}
+case class PREINT   ( text: String ) extends PreInfoToken ( text ) {
+  /** To postlex an INT, we simply have to .toInt the string.
+   */
+  override def postLex (
+    nameMap: Map [ String , Name ] ,
+    nextName: NumName
+  ): ( Map [ String , Name ] , NumName , PostToken ) =
+    ( nameMap , nextName , POSTINT ( this.text.toInt ).setPos ( this.pos ) )
+}
+
+case class PREKHAR  ( text: String ) extends PreInfoToken ( text ) {
+  /** To postlex an INT, we simply have to .toInt the string.
+   */
+  override def postLex (
+    nameMap: Map [ String , Name ] ,
+    nextName: NumName
