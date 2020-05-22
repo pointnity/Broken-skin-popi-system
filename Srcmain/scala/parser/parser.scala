@@ -135,3 +135,6 @@ object Parser extends Parsers {
       case s ~ c ~ _ ~ qs ~ _ ~ as ~ d ~ p =>
         putPos ( Receive ( true , c , qs , as , p ) , s , d )
     }
+
+  // Helper parser for server and receive to easily parse lists of
+  // 'name: ty, ...' using repsep.
