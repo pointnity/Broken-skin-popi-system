@@ -180,3 +180,22 @@ object Parser extends Parsers {
   def tyChar: Parser [ SType ] = TYCHAR() ^^ {
     case tc => putPos ( SKhar , tc , tc )
   }
+
+  def tyStr: Parser [ SType ] = TYSTR() ^^ {
+    case ts => putPos ( SList ( SKhar ) , ts , ts )
+  }
+
+  def tyList: Parser [ SType ] = LSQUARE() ~ ty ~ RSQUARE() ^^ {
+    case l ~ t ~ r => putPos ( SList ( t ) , l , r )
+  }
+
+  def tyChan: Parser [ SType ] =
+    AT() ~ LCURLY() ~ repsep ( name , COMMA() ) ~ SEMI() ~
+    repsep ( ty , COMMA() ) ~ RCURLY() ^^ {
+      case a ~ _ ~ qs ~ _ ~ ts ~ r =>
+        putPos ( SChan ( qs map ( ( _ , List.empty ) ) , ts ) , a , r )
+    }
+
+  def tyPair: Parser [ SType ] = LPAREN() ~ ty ~ COMMA() ~ ty ~ RPAREN() ^^ {
+    case l ~ t1 ~ _ ~ t2 ~ r => putPos ( SPair ( t1 , t2 ) , l , r )
+  }
