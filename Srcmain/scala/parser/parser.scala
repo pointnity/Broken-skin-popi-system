@@ -352,3 +352,38 @@ object Lexer extends RegexParsers {
     positioned { "else"                  ^^ { _ => ELSE    ( ) } } |||
     positioned { "endif"                 ^^ { _ => ENDIF   ( ) } } |||
     positioned { "send"                  ^^ { _ => SEND    ( ) } } |||
+    positioned { "receive"               ^^ { _ => RECEIVE ( ) } } |||
+    positioned { "server"                ^^ { _ => SERVER  ( ) } } |||
+    positioned { "of"                    ^^ { _ => OF      ( ) } } |||
+    positioned { "|"                     ^^ { _ => BAR     ( ) } } |||
+    positioned { "end"                   ^^ { _ => END     ( ) } } |||
+    positioned { "("                     ^^ { _ => LPAREN  ( ) } } |||
+    positioned { ")"                     ^^ { _ => RPAREN  ( ) } } |||
+    positioned { "{"                     ^^ { _ => LCURLY  ( ) } } |||
+    positioned { "}"                     ^^ { _ => RCURLY  ( ) } } |||
+    positioned { "["                     ^^ { _ => LSQUARE ( ) } } |||
+    positioned { "]"                     ^^ { _ => RSQUARE ( ) } } |||
+    positioned { ","                     ^^ { _ => COMMA   ( ) } } |||
+    positioned { "<-"                    ^^ { _ => LARROW  ( ) } } |||
+    positioned { "->"                    ^^ { _ => RARROW  ( ) } } |||
+    positioned { "true"                  ^^ { _ => TRUE    ( ) } } |||
+    positioned { "false"                 ^^ { _ => FALSE   ( ) } } |||
+    positioned { "+"                     ^^ { _ => PLUS    ( ) } } |||
+    positioned { "-"                     ^^ { _ => DASH    ( ) } } |||
+    positioned { "/"                     ^^ { _ => FSLASH  ( ) } } |||
+    positioned { "%"                     ^^ { _ => PERC    ( ) } } |||
+    positioned { "="                     ^^ { _ => EQUAL   ( ) } } |||
+    positioned { "=="                    ^^ { _ => EQEQ    ( ) } } |||
+    positioned { "!="                    ^^ { _ => NEQ     ( ) } } |||
+    positioned { "<"                     ^^ { _ => LESS    ( ) } } |||
+    positioned { "<="                    ^^ { _ => LESSEQ  ( ) } } |||
+    positioned { ">"                     ^^ { _ => GRTR    ( ) } } |||
+    positioned { ">="                    ^^ { _ => GRTREQ  ( ) } } |||
+    positioned { "&&"                    ^^ { _ => AND     ( ) } } |||
+    positioned { "||"                    ^^ { _ => OR      ( ) } } |||
+    positioned { "::"                    ^^ { _ => CONS    ( ) } } |||
+    positioned { "?"                     ^^ { _ => QMARK   ( ) } } |||
+    positioned { "*--"                   ^^ { _ => HEAD    ( ) } } |||
+    positioned { "-**"                   ^^ { _ => TAIL    ( ) } } |||
+    positioned { "int"                   ^^ { _ => TYINT   ( ) } } |||
+    positioned { "bool"                  ^^ { _ => TYBOOL  ( ) } } |||
