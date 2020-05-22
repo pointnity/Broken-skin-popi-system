@@ -277,3 +277,32 @@ object Parser extends Parsers {
   def stdIn:  Parser [ Exp ] = STDIN() ^^ {
     case s => putPos ( ChanLiteral ( StdInName  ) , s , s )
   }
+
+  def stdErr: Parser [ Exp ] = STDERR() ^^ {
+    case s => putPos ( ChanLiteral ( StdErrName ) , s , s )
+  }
+
+  def binOpTy: Parser [ BinOp ] =
+    PLUS   ( ) ^^ { case t  => putPos ( Add       , t , t ) } |
+    DASH   ( ) ^^ { case t  => putPos ( Sub       , t , t ) } |
+    STAR   ( ) ^^ { case t  => putPos ( Mul       , t , t ) } |
+    FSLASH ( ) ^^ { case t  => putPos ( Div       , t , t ) } |
+    PERC   ( ) ^^ { case t  => putPos ( Mod       , t , t ) } |
+    EQEQ   ( ) ^^ { case t  => putPos ( Equal     , t , t ) } |
+    NEQ    ( ) ^^ { case t  => putPos ( NotEqual  , t , t ) } |
+    LESS   ( ) ^^ { case t  => putPos ( Less      , t , t ) } |
+    LESSEQ ( ) ^^ { case t  => putPos ( LessEq    , t , t ) } |
+    GRTR   ( ) ^^ { case t  => putPos ( Greater   , t , t ) } |
+    GRTREQ ( ) ^^ { case t  => putPos ( GreaterEq , t , t ) } |
+    AND    ( ) ^^ { case t  => putPos ( And       , t , t ) } |
+    OR     ( ) ^^ { case t  => putPos ( Or        , t , t ) } |
+    CONS   ( ) ^^ { case t  => putPos ( Cons      , t , t ) }
+
+  def unOpTy: Parser [ UnOp ] =
+    BANG   ( ) ^^ { case t  => putPos ( Not    , t , t ) } |
+    LARROW ( ) ^^ { case t  => putPos ( PLeft  , t , t ) } |
+    RARROW ( ) ^^ { case t  => putPos ( PRight , t , t ) } |
+    QMARK  ( ) ^^ { case t  => putPos ( Empty  , t , t ) } |
+    HEAD   ( ) ^^ { case t  => putPos ( Head   , t , t ) } |
+    TAIL   ( ) ^^ { case t  => putPos ( Tail   , t , t ) }
+}
