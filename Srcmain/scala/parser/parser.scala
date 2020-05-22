@@ -306,3 +306,29 @@ object Parser extends Parsers {
     HEAD   ( ) ^^ { case t  => putPos ( Head   , t , t ) } |
     TAIL   ( ) ^^ { case t  => putPos ( Tail   , t , t ) }
 }
+
+/** Reader for Tokens used to feed a List [ PostToken ] into the Parser.
+ */
+class TokenReader ( tokens: List [ PostToken ] ) extends Reader [ PostToken ] {
+  override def first : PostToken = tokens.head
+  override def atEnd : Boolean = tokens.isEmpty
+  override def pos   : Position = NoPosition
+  override def rest  : Reader [ PostToken ] = new TokenReader( tokens.tail )
+}
+
+/** The lexer - provides the lex method which convers a String into a
+ *  List [ PreToken ].
+ */
+object Lexer extends RegexParsers {
+
+  def apply ( input: Source ): Either
+    [ LexerError
+    , ( Map [ String , Name ] , NumName , List [ PostToken ] )
+    ] = lex ( new PagedSeqReader ( PagedSeq.fromSource ( input ) ) ) match {
+      case Success   ( tks , rest ) => Right ( PreToken.postLexAll ( tks ) )
+      case NoSuccess ( msg , rest ) =>
+        Left ( LexerError ( rest.pos.line , rest.pos.column , msg ) )
+    }
+
+  override def skipWhitespace = true
+  override val whiteSpace = """[ \t\r\f\n]+""".r
