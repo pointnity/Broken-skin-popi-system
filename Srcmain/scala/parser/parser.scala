@@ -149,3 +149,4 @@ object Parser extends Parsers {
 
   def let: Parser [ Proc ] =
     LET() ~ name ~ COLON() ~ ty ~ EQUAL() ~ exp ~ DOT() ~ seq ^^ {
+      case l ~ n ~ _ ~ t ~ _ ~ e ~ d ~ p =>
