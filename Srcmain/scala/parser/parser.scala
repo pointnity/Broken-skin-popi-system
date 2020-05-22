@@ -387,3 +387,28 @@ object Lexer extends RegexParsers {
     positioned { "-**"                   ^^ { _ => TAIL    ( ) } } |||
     positioned { "int"                   ^^ { _ => TYINT   ( ) } } |||
     positioned { "bool"                  ^^ { _ => TYBOOL  ( ) } } |||
+    positioned { "char"                  ^^ { _ => TYCHAR  ( ) } } |||
+    positioned { "string"                ^^ { _ => TYSTR   ( ) } } |||
+    positioned { "stdout"                ^^ { _ => STDOUT  ( ) } } |||
+    positioned { "stdin"                 ^^ { _ => STDIN   ( ) } } |||
+    positioned { "stderr"                ^^ { _ => STDERR  ( ) } } |||
+    positioned { "class"                 ^^ { _ => CLASS   ( ) } } |||
+    positioned { "instance"              ^^ { _ => INST    ( ) } } |||
+    positioned { "where"                 ^^ { _ => WHERE   ( ) } } |||
+    positioned { "in"                    ^^ { _ => IN      ( ) } } ) )
+}
+
+/** Below we have the token classes. We have PreTokens and PostTokens to
+ *  represent tokens before and after the postlexing of lexed information.
+ *  KeyWdTokens are both Pre and Post tokens because they require no postlexing.
+ *  Tokens that contain information are divided into separate Pre and Post
+ *  InfoToken classes as they require postlexing.
+ */
+
+sealed trait Token extends Positional
+sealed abstract class PreToken extends Token {
+  def postLex (
+    nameMap: Map [ String , Name ] ,
+    nextName: NumName
+  ): ( Map [ String , Name ] , NumName , PostToken )
+}
