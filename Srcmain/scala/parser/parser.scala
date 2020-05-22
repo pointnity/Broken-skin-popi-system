@@ -123,3 +123,4 @@ object Parser extends Parsers {
     }
 
   def rcv: Parser [ Proc ] =
+    RECEIVE() ~ exp ~ SEMI() ~ repsep ( name , COMMA() ) ~
