@@ -513,3 +513,23 @@ sealed abstract class KeyWdToken extends PreToken with PostToken {
   ): ( Map [ String , Name ] , NumName , PostToken ) =
     ( nameMap , nextName , this )
 }
+
+case class BANG    ( ) extends KeyWdToken { val text: String = "!"        }
+case class STAR    ( ) extends KeyWdToken { val text: String = "*"        }
+case class DOT     ( ) extends KeyWdToken { val text: String = "."        }
+case class COLON   ( ) extends KeyWdToken { val text: String = ":"        }
+case class SEMI    ( ) extends KeyWdToken { val text: String = ";"        }
+case class AT      ( ) extends KeyWdToken { val text: String = "@"        }
+case class TILDE   ( ) extends KeyWdToken { val text: String = "~"        }
+case class LET     ( ) extends KeyWdToken { val text: String = "let"      }
+case class NEW     ( ) extends KeyWdToken { val text: String = "new"      }
+case class IF      ( ) extends KeyWdToken { val text: String = "if"       }
+case class THEN    ( ) extends KeyWdToken { val text: String = "then"     }
+case class ELSE    ( ) extends KeyWdToken { val text: String = "else"     }
+case class ENDIF   ( ) extends KeyWdToken { val text: String = "endif"    }
+case class SEND    ( ) extends KeyWdToken { val text: String = "send"     }
+case class RECEIVE ( ) extends KeyWdToken { val text: String = "receive"  }
+case class SERVER  ( ) extends KeyWdToken { val text: String = "server"   }
+case class OF      ( ) extends KeyWdToken { val text: String = "of"       }
+case class BAR     ( ) extends KeyWdToken { val text: String = "|"        }
+case class END     ( ) extends KeyWdToken { val text: String = "end"      }
