@@ -120,3 +120,4 @@ object Parser extends Parsers {
     SEMI () ~ repsep ( exp , COMMA() ) ~ DOT() ~ seq ^^ {
       case s ~ c ~ _ ~ ts ~ _ ~ ms ~ d ~ p =>
         putPos ( Send ( c , ts , ms , p ) , s , d )
+    }
