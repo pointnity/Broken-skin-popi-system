@@ -151,3 +151,14 @@ object Parser extends Parsers {
     LET() ~ name ~ COLON() ~ ty ~ EQUAL() ~ exp ~ DOT() ~ seq ^^ {
       case l ~ n ~ _ ~ t ~ _ ~ e ~ d ~ p =>
         putPos ( LetIn ( n , t , e , p ) , l , d )
+    }
+
+  def ite: Parser [ Proc ] =
+    IF() ~ exp ~ THEN() ~ seq ~ ELSE() ~ seq ~ ENDIF() ^^ {
+      case i ~ e ~ _ ~ p ~ _ ~ q ~ d =>
+        putPos ( IfThenElse ( e , p , q ) , i , d )
+    }
+
+  def end: Parser [ Proc ] = END() ^^ { case end => putPos ( End , end , end ) }
+
+  /**
