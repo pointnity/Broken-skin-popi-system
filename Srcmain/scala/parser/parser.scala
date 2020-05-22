@@ -248,3 +248,32 @@ object Parser extends Parsers {
   def falseLiteral: Parser [ Exp ] = FALSE() ^^ {
     case f => putPos ( BoolLiteral ( false ) , f , f )
   }
+
+  def pair: Parser [ Exp ] = LPAREN() ~ exp ~ COMMA() ~ exp ~ RPAREN() ^^ {
+    case lp ~ l ~ _ ~ r ~ rp => putPos ( Pair ( l , r ) , lp , rp )
+  }
+
+  def unExp: Parser [ Exp ] = unOpTy ~ exp ^^ {
+    case op ~ e => putPos ( UnExp ( op , e ) , op , e )
+  }
+
+  def uMinus: Parser [ Exp ] = DASH() ~ exp ^^ {
+    case d ~ e => putPos ( BinExp ( Sub , IntLiteral ( 0 ) , e ) , d , e )
+  }
+
+  def emptyList: Parser [ Exp ] = LSQUARE() ~ RSQUARE() ^^ {
+    case l ~ r => putPos ( ListExp ( List.empty ) , l , r )
+  }
+
+  def list: Parser [ Exp ] =
+    LSQUARE() ~ rep1sep ( exp , COMMA() ) ~ RSQUARE() ^^ {
+      case l ~ es ~ r => putPos ( ListExp ( es ) , l , r )
+    }
+
+  def stdOut: Parser [ Exp ] = STDOUT() ^^ {
+    case s => putPos ( ChanLiteral ( StdOutName ) , s , s )
+  }
+
+  def stdIn:  Parser [ Exp ] = STDIN() ^^ {
+    case s => putPos ( ChanLiteral ( StdInName  ) , s , s )
+  }
