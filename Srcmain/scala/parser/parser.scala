@@ -162,3 +162,21 @@ object Parser extends Parsers {
   def end: Parser [ Proc ] = END() ^^ { case end => putPos ( End , end , end ) }
 
   /**
+   * Combinator parsers for types. No left-recursion here so it's nice and
+   * straightforward.
+   */
+
+  def ty: Parser [ SType ] =
+    tyInt | tyBool | tyChar | tyStr | tyList | tyChan | tyPair | tyVar
+
+  def tyInt: Parser [ SType ] = TYINT() ^^ {
+    case ti => putPos ( SInt , ti , ti )
+  }
+
+  def tyBool: Parser [ SType ] = TYBOOL() ^^ {
+    case tb => putPos ( SBool , tb , tb )
+  }
+
+  def tyChar: Parser [ SType ] = TYCHAR() ^^ {
+    case tc => putPos ( SKhar , tc , tc )
+  }
