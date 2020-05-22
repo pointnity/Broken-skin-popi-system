@@ -127,3 +127,4 @@ object Parser extends Parsers {
     SEMI() ~ repsep ( nameTy , COMMA() ) ~ DOT() ~ seq ^^ {
       case r ~ c ~ _ ~ qs ~ _ ~ as ~ d ~ p =>
         putPos ( Receive ( false , c , qs , as , p ) , r , d )
+    }
