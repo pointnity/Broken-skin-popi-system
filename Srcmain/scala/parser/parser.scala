@@ -119,3 +119,4 @@ object Parser extends Parsers {
   def snd: Parser [ Proc ] = SEND() ~ exp ~ SEMI() ~ repsep ( ty , COMMA() ) ~
     SEMI () ~ repsep ( exp , COMMA() ) ~ DOT() ~ seq ^^ {
       case s ~ c ~ _ ~ ts ~ _ ~ ms ~ d ~ p =>
+        putPos ( Send ( c , ts , ms , p ) , s , d )
