@@ -121,3 +121,5 @@ object Parser extends Parsers {
       case s ~ c ~ _ ~ ts ~ _ ~ ms ~ d ~ p =>
         putPos ( Send ( c , ts , ms , p ) , s , d )
     }
+
+  def rcv: Parser [ Proc ] =
