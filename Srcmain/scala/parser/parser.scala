@@ -465,3 +465,33 @@ case class PREKHAR  ( text: String ) extends PreInfoToken ( text ) {
   override def postLex (
     nameMap: Map [ String , Name ] ,
     nextName: NumName
+  ): ( Map [ String , Name ] , NumName , PostToken ) =
+    ( nameMap , nextName , POSTKHAR ( this.text.charAt ( 1 ) ).setPos ( this.pos ) )
+}
+
+case class PRESTR   ( text: String ) extends PreInfoToken ( text ) {
+  /** To postlex an INT, we simply have to .toInt the string.
+   */
+  override def postLex (
+    nameMap: Map [ String , Name ] ,
+    nextName: NumName
+  ): ( Map [ String , Name ] , NumName , PostToken ) =
+    ( nameMap , nextName ,
+      POSTSTR  ( stringToEscapedCharList ( this.text.init.tail ) )
+      .setPos ( this.pos ) )
+
+  def stringToEscapedCharList ( str: String ): Exp =
+    ListExp ( escape ( str ).toList.map ( KharLiteral ( _ ) ) )
+
+  /** Hacky way to deal with escape characters in strings. Scan through the
+   *  string (implicitly converted to Seq[Char] and back) and look for the
+   *  escape sequences. This implementation will not scale to deal with \" or \'
+   *  and therefore something more sophisticated will eventually be required in
+   *  the lex method to handle these.
+   */
+  def escape ( s: Seq[Char] ): Seq[Char] = s match {
+    case '\\' +: 'n'  +: t => '\n' +: escape ( t )
+    case '\\' +: 't'  +: t => '\t' +: escape ( t )
+    case '\\' +: '\\' +: t => '\\' +: escape ( t )
+    case          c   +: t =>   c  +: escape ( t )
+    case Nil               => Nil
