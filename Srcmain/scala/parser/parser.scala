@@ -146,3 +146,5 @@ object Parser extends Parsers {
     NEW() ~ name ~ COLON() ~ ty ~ DOT() ~ seq ^^ {
       case nu ~ n ~ _ ~ t ~ d ~ p => putPos ( New ( n , t , p ) , nu , d )
     }
+
+  def let: Parser [ Proc ] =
