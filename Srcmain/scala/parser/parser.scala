@@ -495,3 +495,21 @@ case class PRESTR   ( text: String ) extends PreInfoToken ( text ) {
     case '\\' +: '\\' +: t => '\\' +: escape ( t )
     case          c   +: t =>   c  +: escape ( t )
     case Nil               => Nil
+  }
+}
+
+sealed trait PostToken extends Token
+sealed trait PostInfoToken extends PostToken
+case class POSTIDENT ( name: Name ) extends PostInfoToken
+case class POSTINT   ( num:  Int  ) extends PostInfoToken
+case class POSTKHAR  ( khar: Char ) extends PostInfoToken
+case class POSTSTR   ( str:  Exp  ) extends PostInfoToken
+
+sealed abstract class KeyWdToken extends PreToken with PostToken {
+  val text: String
+  override def postLex (
+    nameMap: Map [ String , Name ] ,
+    nextName: NumName
+  ): ( Map [ String , Name ] , NumName , PostToken ) =
+    ( nameMap , nextName , this )
+}
