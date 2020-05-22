@@ -224,3 +224,27 @@ object Parser extends Parsers {
   def parens: Parser [ Exp ] = LPAREN() ~ exp ~ RPAREN() ^^ {
     case l ~ e ~ r => putPos ( e , l , r )
   }
+
+  def variable: Parser [ Exp ] = name ^^ {
+    case n => putPos ( Variable ( n ) , n , n )
+  }
+
+  def intLiteral: Parser [ Exp ] = accept ( "POSTINT" , {
+    case p @ POSTINT ( i ) => putPos ( IntLiteral ( i ) , p , p )
+  } )
+
+  def kharLiteral: Parser [ Exp ] = accept ( "POSTKHAR" , {
+    case p @ POSTKHAR ( c ) => putPos ( KharLiteral ( c ) , p , p )
+  } )
+
+  def strLiteral: Parser [ Exp ] = accept ( "POSTSTR" , {
+    case p @ POSTSTR ( s ) => putPos ( s , p , p )
+  } )
+
+  def trueLiteral: Parser [ Exp ] = TRUE() ^^ {
+    case t => putPos ( BoolLiteral ( true ) , t , t )
+  }
+
+  def falseLiteral: Parser [ Exp ] = FALSE() ^^ {
+    case f => putPos ( BoolLiteral ( false ) , f , f )
+  }
