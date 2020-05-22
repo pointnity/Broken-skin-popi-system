@@ -139,3 +139,4 @@ object Parser extends Parsers {
   // Helper parser for server and receive to easily parse lists of
   // 'name: ty, ...' using repsep.
   def nameTy: Parser [ ( Name , SType ) ] = name ~ COLON() ~ ty ^^ {
+    case n ~ _ ~ t => ( n , t )
