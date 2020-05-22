@@ -128,3 +128,5 @@ object Parser extends Parsers {
       case r ~ c ~ _ ~ qs ~ _ ~ as ~ d ~ p =>
         putPos ( Receive ( false , c , qs , as , p ) , r , d )
     }
+
+  def srv: Parser [ Proc ] =
