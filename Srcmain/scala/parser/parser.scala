@@ -141,3 +141,5 @@ object Parser extends Parsers {
   def nameTy: Parser [ ( Name , SType ) ] = name ~ COLON() ~ ty ^^ {
     case n ~ _ ~ t => ( n , t )
   }
+
+  def res: Parser [ Proc ] =
