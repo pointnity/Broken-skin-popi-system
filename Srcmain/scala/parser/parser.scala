@@ -115,3 +115,7 @@ object Parser extends Parsers {
     LSQUARE() ~ rep1sep ( seq , BAR() ) ~ RSQUARE() ^^ {
       case l ~ p ~ r => putPos ( Proc fromList p , l , r )
     }
+
+  def snd: Parser [ Proc ] = SEND() ~ exp ~ SEMI() ~ repsep ( ty , COMMA() ) ~
+    SEMI () ~ repsep ( exp , COMMA() ) ~ DOT() ~ seq ^^ {
+      case s ~ c ~ _ ~ ts ~ _ ~ ms ~ d ~ p =>
