@@ -132,3 +132,4 @@ object Parser extends Parsers {
   def srv: Parser [ Proc ] =
     SERVER() ~ exp ~ SEMI() ~ repsep ( name , COMMA() ) ~
     SEMI() ~ repsep ( nameTy , COMMA() ) ~ DOT() ~ seq ^^ {
+      case s ~ c ~ _ ~ qs ~ _ ~ as ~ d ~ p =>
