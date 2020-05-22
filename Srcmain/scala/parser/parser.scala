@@ -332,3 +332,23 @@ object Lexer extends RegexParsers {
 
   override def skipWhitespace = true
   override val whiteSpace = """[ \t\r\f\n]+""".r
+
+  def lex : Parser [ List [ PreToken ] ] = phrase ( rep1 (
+    positioned { """[a-z_]+""".r         ^^ { PREIDENT ( _ )   } } |||
+    positioned { """(0|[1-9]\d*)""".r    ^^ { PREINT   ( _ )   } } |||
+    positioned { """\'(.|\n)\'""".r      ^^ { PREKHAR  ( _ )   } } |||
+    positioned { """\"([^\"]|\n)*\"""".r ^^ { PRESTR   ( _ )   } } |||
+    positioned { "!"                     ^^ { _ => BANG    ( ) } } |||
+    positioned { "*"                     ^^ { _ => STAR    ( ) } } |||
+    positioned { "."                     ^^ { _ => DOT     ( ) } } |||
+    positioned { ":"                     ^^ { _ => COLON   ( ) } } |||
+    positioned { ";"                     ^^ { _ => SEMI    ( ) } } |||
+    positioned { "@"                     ^^ { _ => AT      ( ) } } |||
+    positioned { "~"                     ^^ { _ => TILDE   ( ) } } |||
+    positioned { "let"                   ^^ { _ => LET     ( ) } } |||
+    positioned { "new"                   ^^ { _ => NEW     ( ) } } |||
+    positioned { "if"                    ^^ { _ => IF      ( ) } } |||
+    positioned { "then"                  ^^ { _ => THEN    ( ) } } |||
+    positioned { "else"                  ^^ { _ => ELSE    ( ) } } |||
+    positioned { "endif"                 ^^ { _ => ENDIF   ( ) } } |||
+    positioned { "send"                  ^^ { _ => SEND    ( ) } } |||
