@@ -412,3 +412,34 @@ sealed abstract class PreToken extends Token {
     nextName: NumName
   ): ( Map [ String , Name ] , NumName , PostToken )
 }
+object PreToken {
+  def postLexAll (
+    tokens: List [ PreToken ]
+  ): ( Map [ String , Name ] , NumName , List [ PostToken ] ) = {
+    var nameMap  : Map [ String , Name ] = Map.empty
+    var nextName : NumName               = NumName ( 0 )
+    var done     : List [ PostToken ]    = List ( )
+    var todo     : List [ PreToken  ]    = tokens
+    while ( ! todo.isEmpty ) {
+      val todoHeadProcessed = todo.head.postLex ( nameMap , nextName )
+      nameMap  = todoHeadProcessed._1
+      nextName = todoHeadProcessed._2
+      done     = done ++ List ( todoHeadProcessed._3 )
+      todo     = todo.tail
+    }
+    ( nameMap , nextName , done )
+  }
+}
+sealed abstract class PreInfoToken ( text: String ) extends PreToken
+
+case class PREIDENT ( text: String ) extends PreInfoToken ( text ) {
+  /** Processing and IDENT consists of looking up the name map to see if the
+   *  string name already has an integer representation. If so, we use that
+   *  integer. If not, we choose a new integer (via Name.next) as the
+   *  representation and add that mapping to the map.
+   */
+  override def postLex (
+    nameMap: Map [ String , Name ] ,
+    nextName: NumName
+  ): ( Map [ String , Name ] , NumName , PostToken ) =
+    nameMap get this.text match {
