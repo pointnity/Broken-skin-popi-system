@@ -199,3 +199,28 @@ object Parser extends Parsers {
   def tyPair: Parser [ SType ] = LPAREN() ~ ty ~ COMMA() ~ ty ~ RPAREN() ^^ {
     case l ~ t1 ~ _ ~ t2 ~ r => putPos ( SPair ( t1 , t2 ) , l , r )
   }
+
+  def tyVar: Parser [ SType ] = name ^^ {
+    case n => putPos ( SVar ( n , List.empty ) , n , n )
+  }
+
+  /**
+   * Combinator parsers for expressions. The only left-recursive production in
+   * the basic expression grammar for this language is the binary expression
+   * production, so we add an extra expNoBinExp production to remove the left
+   * recursion.
+   */
+
+  def exp: Parser [ Exp ] = binExp | expNoBinExp
+
+  def expNoBinExp: Parser [ Exp ] = variable | intLiteral | trueLiteral |
+    falseLiteral | kharLiteral | strLiteral | pair | unExp | parens |
+    emptyList | list | stdOut | stdIn | stdErr
+
+  def binExp: Parser [ Exp ] = expNoBinExp ~ binOpTy ~ exp ^^ {
+    case l ~ op ~ r => putPos ( BinExp ( op , l , r ) , l , r )
+  }
+
+  def parens: Parser [ Exp ] = LPAREN() ~ exp ~ RPAREN() ^^ {
+    case l ~ e ~ r => putPos ( e , l , r )
+  }
