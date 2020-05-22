@@ -143,3 +143,4 @@ object Parser extends Parsers {
   }
 
   def res: Parser [ Proc ] =
+    NEW() ~ name ~ COLON() ~ ty ~ DOT() ~ seq ^^ {
