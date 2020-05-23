@@ -45,3 +45,4 @@ abstract class Info {
   override def toString: String = this match {
     case NoInfo                                   => "<no data>"
     case SrcPosInfo ( ( ll , lc ) , ( rl , rc ) ) =>
+      s"source position spanning line $ll, column $lc to line $rl, column $rc"
