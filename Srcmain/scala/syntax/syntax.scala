@@ -81,3 +81,4 @@ sealed abstract class Proc extends SyntaxElement {
         ( ms map ( _.chanLiterals ) ).fold ( Set.empty ) ( _ union _ )
     case Receive    ( _ , e , _  , _ , p ) =>
       e.chanLiterals union p.chanLiterals
+    case LetIn      ( _ , _ , e  , p     ) =>
