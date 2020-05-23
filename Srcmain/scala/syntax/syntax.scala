@@ -82,3 +82,4 @@ sealed abstract class Proc extends SyntaxElement {
     case Receive    ( _ , e , _  , _ , p ) =>
       e.chanLiterals union p.chanLiterals
     case LetIn      ( _ , _ , e  , p     ) =>
+      e.chanLiterals union p.chanLiterals
