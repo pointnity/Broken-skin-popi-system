@@ -48,3 +48,4 @@ abstract class Info {
       s"source position spanning line $ll, column $lc to line $rl, column $rc"
   }
 }
+case class SrcPosInfo(val lPos: (Int, Int), val rPos: (Int, Int)) extends Info
