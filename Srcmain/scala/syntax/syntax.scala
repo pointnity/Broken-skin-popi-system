@@ -57,3 +57,4 @@ sealed abstract class Proc extends SyntaxElement {
     case Send       ( c     , ts  , ms   , p      ) =>
       "send " + (c pstr names) + "; " +
       ((ts map (_ pstr names)) mkString ", ") +
+      "; " + ((ms map (_ pstr names)) mkString ", ") + ". " + (p pstr names)
