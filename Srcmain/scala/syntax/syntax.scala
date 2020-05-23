@@ -7,3 +7,5 @@ trait SyntaxElement {
   def pstr(names: Map[Name, String]): String
   def free: Set[Name]
 }
+
+abstract class Name extends SyntaxElement
