@@ -17,3 +17,5 @@ case class NumName(val id: Int) extends Name {
   def free: Set[Name] = Set(this)
   override def toString: String = s"<${this.id}>" // for debugging
 }
+
+abstract class PreDefName extends Name {
