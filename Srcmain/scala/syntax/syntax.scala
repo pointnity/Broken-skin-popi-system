@@ -73,3 +73,4 @@ sealed abstract class Proc extends SyntaxElement {
     case New        ( name  , t , p               ) =>
       s"new ${name pstr names}: ${t pstr names} . ${p pstr names}"
     case End                                       => "end"
+  }
