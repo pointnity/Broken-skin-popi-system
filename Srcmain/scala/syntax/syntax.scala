@@ -47,3 +47,4 @@ abstract class Info {
     case SrcPosInfo ( ( ll , lc ) , ( rl , rc ) ) =>
       s"source position spanning line $ll, column $lc to line $rl, column $rc"
   }
+}
