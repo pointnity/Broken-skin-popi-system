@@ -66,3 +66,4 @@ sealed abstract class Proc extends SyntaxElement {
     case LetIn      ( bind  , t , exp , p         ) =>
       s"let ${bind pstr names}: ${t pstr names} = " +
       s"${exp pstr names} . ${p pstr names}"
+    case IfThenElse ( exp   , tP  , fP            ) =>
