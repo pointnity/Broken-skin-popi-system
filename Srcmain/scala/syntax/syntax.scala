@@ -91,3 +91,4 @@ sealed abstract class Proc extends SyntaxElement {
       p.chanLiterals
     case End                               =>
       Set.empty
+  }
