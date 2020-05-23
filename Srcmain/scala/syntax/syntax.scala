@@ -84,3 +84,4 @@ sealed abstract class Proc extends SyntaxElement {
     case LetIn      ( _ , _ , e  , p     ) =>
       e.chanLiterals union p.chanLiterals
     case IfThenElse ( e , p , q          ) =>
+      e.chanLiterals union p.chanLiterals union q.chanLiterals
