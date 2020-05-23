@@ -70,3 +70,4 @@ sealed abstract class Proc extends SyntaxElement {
       s"if ${exp pstr names} then ${tP pstr names} else ${fP pstr names} endif"
     case Parallel   ( p     , q                   ) =>
       s"[ ${p pstr names} | ${q pstr names} ]"
+    case New        ( name  , t , p               ) =>
