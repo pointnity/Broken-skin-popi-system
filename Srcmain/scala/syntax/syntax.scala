@@ -16,3 +16,4 @@ case class NumName(val id: Int) extends Name {
     names getOrElse (this, this.toString)
   def free: Set[Name] = Set(this)
   override def toString: String = s"<${this.id}>" // for debugging
+}
