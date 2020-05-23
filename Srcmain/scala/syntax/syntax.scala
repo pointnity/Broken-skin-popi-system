@@ -22,3 +22,7 @@ abstract class PreDefName extends Name {
   def pstr(names: Map[Name, String]): String = this.toString
   def free: Set[Name] = Set(this)
 }
+
+case object StdOutName extends PreDefName {
+  override def toString: String = "stdout" 
+}
