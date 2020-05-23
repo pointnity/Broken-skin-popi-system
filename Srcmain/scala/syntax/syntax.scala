@@ -77,3 +77,4 @@ sealed abstract class Proc extends SyntaxElement {
 
   def chanLiterals: Set[Name] = this match {
     case Send       ( c , _ , ms , p     ) =>
+      c.chanLiterals union p.chanLiterals union
