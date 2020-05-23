@@ -26,3 +26,7 @@ abstract class PreDefName extends Name {
 case object StdOutName extends PreDefName {
   override def toString: String = "stdout" 
 }
+
+case object StdInName  extends PreDefName {
+  override def toString: String = "stdin"
+}
