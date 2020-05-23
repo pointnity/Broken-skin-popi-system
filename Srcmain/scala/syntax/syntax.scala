@@ -89,3 +89,4 @@ sealed abstract class Proc extends SyntaxElement {
       p.chanLiterals union q.chanLiterals
     case New        ( _ , _ , p          ) =>
       p.chanLiterals
+    case End                               =>
