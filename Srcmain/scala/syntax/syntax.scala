@@ -44,3 +44,4 @@ object findNextName extends Function1[Set[Name], NumName] {
 abstract class Info {
   override def toString: String = this match {
     case NoInfo                                   => "<no data>"
+    case SrcPosInfo ( ( ll , lc ) , ( rl , rc ) ) =>
