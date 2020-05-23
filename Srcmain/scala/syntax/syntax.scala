@@ -36,3 +36,4 @@ case object StdErrName extends PreDefName {
 }
 
 object findNextName extends Function1[Set[Name], NumName] {
+  def apply(names: Set[Name]): NumName =
