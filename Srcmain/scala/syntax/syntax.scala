@@ -35,3 +35,4 @@ case object StdErrName extends PreDefName {
   override def toString: String = "stderr"
 }
 
+object findNextName extends Function1[Set[Name], NumName] {
