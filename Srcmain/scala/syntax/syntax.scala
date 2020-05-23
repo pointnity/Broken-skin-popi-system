@@ -9,3 +9,5 @@ trait SyntaxElement {
 }
 
 abstract class Name extends SyntaxElement
+
+case class NumName(val id: Int) extends Name {
