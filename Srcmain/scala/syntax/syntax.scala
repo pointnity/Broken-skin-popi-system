@@ -49,3 +49,4 @@ abstract class Info {
   }
 }
 case class SrcPosInfo(val lPos: (Int, Int), val rPos: (Int, Int)) extends Info
+case object NoInfo extends Info
