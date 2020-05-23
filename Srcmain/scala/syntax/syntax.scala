@@ -56,3 +56,4 @@ sealed abstract class Proc extends SyntaxElement {
   def pstr(names: Map[Name, String]): String = this match {
     case Send       ( c     , ts  , ms   , p      ) =>
       "send " + (c pstr names) + "; " +
+      ((ts map (_ pstr names)) mkString ", ") +
