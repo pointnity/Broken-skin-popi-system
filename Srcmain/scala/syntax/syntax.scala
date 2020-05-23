@@ -59,3 +59,4 @@ sealed abstract class Proc extends SyntaxElement {
       ((ts map (_ pstr names)) mkString ", ") +
       "; " + ((ms map (_ pstr names)) mkString ", ") + ". " + (p pstr names)
     case Receive    ( r     , c   , qs   , as , p ) =>
+      (if (r) "server" else "receive") + " " + (c pstr names) + "; " +
