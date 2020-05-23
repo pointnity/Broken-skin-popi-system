@@ -30,3 +30,8 @@ case object StdOutName extends PreDefName {
 case object StdInName  extends PreDefName {
   override def toString: String = "stdin"
 }
+
+case object StdErrName extends PreDefName {
+  override def toString: String = "stderr"
+}
+
