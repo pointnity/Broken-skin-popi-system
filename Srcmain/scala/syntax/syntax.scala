@@ -11,3 +11,4 @@ trait SyntaxElement {
 abstract class Name extends SyntaxElement
 
 case class NumName(val id: Int) extends Name {
+  def next: NumName = new NumName(this.id + 1)
