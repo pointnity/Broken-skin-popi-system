@@ -14,3 +14,4 @@ case class NumName(val id: Int) extends Name {
   def next: NumName = new NumName(this.id + 1)
   def pstr(names: Map[Name, String]): String =
     names getOrElse (this, this.toString)
+  def free: Set[Name] = Set(this)
