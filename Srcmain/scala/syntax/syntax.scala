@@ -21,3 +21,4 @@ case class NumName(val id: Int) extends Name {
 abstract class PreDefName extends Name {
   def pstr(names: Map[Name, String]): String = this.toString
   def free: Set[Name] = Set(this)
+}
