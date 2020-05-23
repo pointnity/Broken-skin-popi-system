@@ -74,3 +74,6 @@ sealed abstract class Proc extends SyntaxElement {
       s"new ${name pstr names}: ${t pstr names} . ${p pstr names}"
     case End                                       => "end"
   }
+
+  def chanLiterals: Set[Name] = this match {
+    case Send       ( c , _ , ms , p     ) =>
