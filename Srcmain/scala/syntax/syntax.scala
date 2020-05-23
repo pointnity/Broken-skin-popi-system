@@ -71,3 +71,4 @@ sealed abstract class Proc extends SyntaxElement {
     case Parallel   ( p     , q                   ) =>
       s"[ ${p pstr names} | ${q pstr names} ]"
     case New        ( name  , t , p               ) =>
+      s"new ${name pstr names}: ${t pstr names} . ${p pstr names}"
