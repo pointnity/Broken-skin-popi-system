@@ -64,3 +64,4 @@ sealed abstract class Proc extends SyntaxElement {
         case (n, t) => s"${n pstr names}: ${t pstr names}"
       }) mkString ", ") + ". " + (p pstr names)
     case LetIn      ( bind  , t , exp , p         ) =>
+      s"let ${bind pstr names}: ${t pstr names} = " +
