@@ -6,3 +6,4 @@ trait SyntaxElement {
   def setInfo(i: Info): Unit = this.info = i
   def pstr(names: Map[Name, String]): String
   def free: Set[Name]
+}
