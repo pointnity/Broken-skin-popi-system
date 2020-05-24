@@ -131,3 +131,4 @@ case class Receive
   ( repl   : Boolean
   , chan   : Exp
   , tyArgs : List [ Name ]
+  , args   : List [ ( Name , SType ) ]
