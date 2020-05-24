@@ -114,3 +114,4 @@ sealed abstract class Proc extends SyntaxElement {
   /** Decompose top-level parallel compositions into a list of processes.
    */
   def listify: List[Proc] = this match {
+    case Parallel ( p , q ) => p.listify ++ q.listify
