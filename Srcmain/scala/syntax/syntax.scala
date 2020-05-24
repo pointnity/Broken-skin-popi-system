@@ -172,3 +172,4 @@ object Proc {
 sealed abstract class Exp extends SyntaxElement {
 
   def chanLiterals: Set[Name] = this match {
+    case Variable    ( _         ) => Set.empty
