@@ -165,3 +165,9 @@ object Proc {
   def fromList(ps: List[Proc]): Proc = ps match {
     case      Nil => End
     case p :: Nil => p
+    case p :: qs  => Parallel(p, fromList(qs))
+  }
+}
+
+sealed abstract class Exp extends SyntaxElement {
+
