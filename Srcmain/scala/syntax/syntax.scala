@@ -141,3 +141,8 @@ case class LetIn
   , exp  : Exp
   , p    : Proc
   ) extends Proc
+
+case class IfThenElse
+  ( cond   : Exp
+  , trueP  : Proc
+  , falseP : Proc
