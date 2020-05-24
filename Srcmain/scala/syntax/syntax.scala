@@ -108,3 +108,8 @@ sealed abstract class Proc extends SyntaxElement {
       val freeInAs: Set [ Name ] = ( ( ( as map ( _._2 ) ).map ( _.free ) )
         .fold ( Set.empty ) ( _ union _ ) ) -- qs
       c.free union freeInP union freeInAs
+    }
+  }
+
+  /** Decompose top-level parallel compositions into a list of processes.
+   */
