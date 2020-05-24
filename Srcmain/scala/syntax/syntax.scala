@@ -132,3 +132,12 @@ case class Receive
   , chan   : Exp
   , tyArgs : List [ Name ]
   , args   : List [ ( Name , SType ) ]
+  , p      : Proc
+  ) extends Proc
+
+case class LetIn
+  ( name : Name
+  , ty   : SType
+  , exp  : Exp
+  , p    : Proc
+  ) extends Proc
