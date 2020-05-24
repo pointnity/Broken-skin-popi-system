@@ -152,3 +152,5 @@ case class Parallel
   ( p : Proc
   , q : Proc
   ) extends Proc
+
+case class New
