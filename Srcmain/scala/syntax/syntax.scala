@@ -157,3 +157,4 @@ case class New
   ( name : Name
   , ty   : SType
   , p    : Proc
+  ) extends Proc
