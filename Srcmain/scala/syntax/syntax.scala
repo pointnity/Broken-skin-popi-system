@@ -158,3 +158,7 @@ case class New
   , ty   : SType
   , p    : Proc
   ) extends Proc
+
+case object End extends Proc
+
+object Proc {
