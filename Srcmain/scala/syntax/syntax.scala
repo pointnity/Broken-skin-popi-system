@@ -103,3 +103,4 @@ sealed abstract class Proc extends SyntaxElement {
     case Send       ( c , ts , ms , p      ) => c.free union p.free union
       ( ( ms map ( _.free ) ) ++ ( ts map ( _.free ) ) )
         .fold ( Set.empty ) ( _ union _ )
+    case Receive    ( _ , c  , qs , as , p ) => {
