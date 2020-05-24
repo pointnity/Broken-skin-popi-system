@@ -146,3 +146,4 @@ case class IfThenElse
   ( cond   : Exp
   , trueP  : Proc
   , falseP : Proc
+  ) extends Proc
