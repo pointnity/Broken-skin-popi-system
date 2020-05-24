@@ -154,3 +154,4 @@ case class Parallel
   ) extends Proc
 
 case class New
+  ( name : Name
