@@ -95,3 +95,4 @@ sealed abstract class Proc extends SyntaxElement {
 
   def free: Set[Name] = this match {
     case IfThenElse ( e , p  , q           ) => e.free union p.free union q.free
+    case Parallel   ( p , q                ) => p.free union q.free
