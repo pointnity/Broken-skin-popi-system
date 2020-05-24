@@ -117,3 +117,4 @@ sealed abstract class Proc extends SyntaxElement {
     case Parallel ( p , q ) => p.listify ++ q.listify
     case End                => Nil
     case _                  => List(this)
+  }
