@@ -147,3 +147,7 @@ case class IfThenElse
   , trueP  : Proc
   , falseP : Proc
   ) extends Proc
+
+case class Parallel
+  ( p : Proc
+  , q : Proc
