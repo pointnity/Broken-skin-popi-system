@@ -92,3 +92,5 @@ sealed abstract class Proc extends SyntaxElement {
     case End                               =>
       Set.empty
   }
+
+  def free: Set[Name] = this match {
