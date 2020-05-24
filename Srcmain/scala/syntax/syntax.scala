@@ -118,3 +118,10 @@ sealed abstract class Proc extends SyntaxElement {
     case End                => Nil
     case _                  => List(this)
   }
+}
+
+case class Send
+  ( chan  : Exp
+  , types : List [ SType ]
+  , msgs  : List [ Exp   ]
+  , p     : Proc
