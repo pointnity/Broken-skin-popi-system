@@ -105,3 +105,4 @@ sealed abstract class Proc extends SyntaxElement {
         .fold ( Set.empty ) ( _ union _ )
     case Receive    ( _ , c  , qs , as , p ) => {
       val freeInP: Set [ Name ] = p.free -- ( as map ( _._1 ) )
+      val freeInAs: Set [ Name ] = ( ( ( as map ( _._2 ) ).map ( _.free ) )
