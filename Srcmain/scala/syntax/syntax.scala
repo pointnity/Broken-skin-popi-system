@@ -126,3 +126,8 @@ case class Send
   , msgs  : List [ Exp   ]
   , p     : Proc
   ) extends Proc
+
+case class Receive
+  ( repl   : Boolean
+  , chan   : Exp
+  , tyArgs : List [ Name ]
