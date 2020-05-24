@@ -99,3 +99,4 @@ sealed abstract class Proc extends SyntaxElement {
     case New        ( n , t  , p           ) => (p.free - n) union t.free
     case End                                 => Set.empty
     case LetIn      ( n , t  , e  , p      ) =>
+      e.free union (p.free - n) union t.free
