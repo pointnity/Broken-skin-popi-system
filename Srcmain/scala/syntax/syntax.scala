@@ -163,3 +163,4 @@ case object End extends Proc
 
 object Proc {
   def fromList(ps: List[Proc]): Proc = ps match {
+    case      Nil => End
