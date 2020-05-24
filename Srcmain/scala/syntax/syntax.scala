@@ -125,3 +125,4 @@ case class Send
   , types : List [ SType ]
   , msgs  : List [ Exp   ]
   , p     : Proc
+  ) extends Proc
