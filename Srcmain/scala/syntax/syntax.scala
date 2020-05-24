@@ -156,3 +156,4 @@ case class Parallel
 case class New
   ( name : Name
   , ty   : SType
+  , p    : Proc
